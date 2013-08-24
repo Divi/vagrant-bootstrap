@@ -14,7 +14,7 @@ apt-get install -y vim
 apt-get install -y apache2
 # Add ServerName to httpd.conf for localhost
 echo "ServerName localhost" > /etc/apache2/httpd.conf
-# Edit default apache alias for Symfony 2
+# Edit default apache alias
 VHOST=$(cat <<EOF
 <VirtualHost *:80>
   DocumentRoot "/var/www"
