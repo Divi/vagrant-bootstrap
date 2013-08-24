@@ -11,6 +11,12 @@ A simple provisioning Vagrant bootstrap to be ready for PHP/MySQL development.
 - MariaDB (MySQL) with custom database, user (remote or not, default: remote) and user password
 - Some essential packages : build-essential git-core vim curl
 
+## Forwarded ports :
+
+- 22 (SSH) > 2222
+- 80 (HTTP) > 8000
+- 3306 (MySQL) > 33060
+
 ## Your parameters
 
 You need to edit some custom parameters in the file "vagrant_bootstrap/parameters.sh"
