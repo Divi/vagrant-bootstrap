@@ -25,4 +25,6 @@ Edit "Vagrantfile" for the box parameters.
 
 ## Other stuff
 
+Do not forget to run the command `vagrant reload` with `--no-provision` option to disable provisioning.
+
 Feel free to fork me !
