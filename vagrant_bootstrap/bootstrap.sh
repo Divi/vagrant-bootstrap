@@ -82,6 +82,8 @@ if [ "$DATABASE_HOST" != "localhost" ];
 then
   sed "s/bind-address\([[:space:]]*\)=\([[:space:]]*\)127.0.0.1/bind-address\1=\20.0.0.0/g" /etc/mysql/my.cnf > /etc/mysql/my.cnf.tmp
   mv /etc/mysql/my.cnf.tmp /etc/mysql/my.cnf
+  # Restart MySQL to reload edited configuration file
+  service mysql restart
 fi
 # Create user & database
 echo "CREATE DATABASE IF NOT EXISTS ${DATABASE_NAME}" | mysql
