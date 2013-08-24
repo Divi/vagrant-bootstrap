@@ -85,3 +85,23 @@ apt-get install -y mariadb-server
 # Git
 # ---
 apt-get install git-core
+
+
+# Configure MySQL database and user
+# ---------------------------------
+DATABASE="your_database"
+USER="your_user"
+PASSWORD="your_user_password"
+# Replace "%" by "localhost" for local only user, 10.0.2.2 for host only or any IP address
+HOST="%"
+
+# Edit my.cnf to unbind localhost
+if [ "$HOST" = "%" ];
+then
+  sed "s/bind-address\([[:space:]]*\)=\([[:space:]]*\)127.0.0.1/bind-address\1=\20.0.0.0/g" /etc/mysql/my.cnf > /etc/mysql/my.cnf.tmp
+  mv /etc/mysql/my.cnf.tmp /etc/mysql/my.cnf
+fi
+# Create user & database
+echo "CREATE DATABASE IF NOT EXISTS ${DATABASE}" | mysql
+echo "CREATE USER '${USER}'@'${HOST}' IDENTIFIED BY '${PASSWORD}'" | mysql
+echo "GRANT ALL PRIVILEGES ON ${DATABASE}.* TO '${USER}'@'${HOST}' IDENTIFIED BY '${PASSWORD}'" | mysql
