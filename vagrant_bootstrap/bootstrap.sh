@@ -14,20 +14,6 @@ apt-get update
 apt-get install -y apache2
 # Add ServerName to httpd.conf for localhost
 echo "ServerName localhost" > /etc/apache2/httpd.conf
-# Edit default apache alias
-VHOST=$(cat <<EOF
-<VirtualHost *:80>
-  DocumentRoot "/var/www"
-  ServerName localhost
-  
-  <Directory "/var/www">
-    AllowOverride None
-  </Directory>
-</VirtualHost>
-EOF
-)
-echo "${VHOST}" > /etc/apache2/sites-available/000-default.conf
-
 # Enable "mod_rewrite"
 a2enmod rewrite
 # Finally, restart apache
@@ -54,6 +40,9 @@ apt-get install -y php5-cli php5-mysql php5-curl php5-mcrypt php5-gd php-pear ph
 rm -rf /var/www
 # Symlink "/vagrant" to "/var/www"
 ln -fs /vagrant/web /var/www
+# Setting the timezone
+sed 's#;date.timezone\([[:space:]]*\)=\([[:space:]]*\)*#date.timezone\1=\2\"'"$PHP_TIMEZONE"'\"#g' /etc/php5/apache2/php.ini > /etc/php5/apache2/php.ini.tmp
+mv /etc/php5/apache2/php.ini.tmp /etc/php5/apache2/php.ini
 
 
 # MySQL (MariaDB)
@@ -89,3 +78,18 @@ fi
 echo "CREATE DATABASE IF NOT EXISTS ${DATABASE_NAME}" | mysql
 echo "CREATE USER '${DATABASE_USER}'@'${DATABASE_HOST}' IDENTIFIED BY '${DATABASE_PASSWORD}'" | mysql
 echo "GRANT ALL PRIVILEGES ON ${DATABASE_NAME}.* TO '${DATABASE_USER}'@'${DATABASE_HOST}' IDENTIFIED BY '${DATABASE_PASSWORD}'" | mysql
+
+# Apache VHOST
+# ------------
+VHOST=$(cat <<EOF
+<VirtualHost *:80>
+  DocumentRoot "/var/www"
+  ServerName localhost
+  
+  <Directory "/var/www">
+    AllowOverride None
+  </Directory>
+</VirtualHost>
+EOF
+)
+echo "${VHOST}" > /etc/apache2/sites-available/000-default.conf
