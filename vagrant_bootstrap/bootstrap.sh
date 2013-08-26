@@ -26,7 +26,7 @@ VHOST=$(cat <<EOF
 </VirtualHost>
 EOF
 )
-echo "${VHOST}" > /etc/apache2/sites-enabled/000-default
+echo "${VHOST}" > /etc/apache2/sites-available/000-default.conf
 
 # Enable "mod_rewrite"
 a2enmod rewrite
