@@ -3,6 +3,8 @@ VagrantBootstrap
 
 A simple provisioning Vagrant bootstrap to be ready for PHP/MySQL development.
 
+If you have using Symfony2, please see the branch named `symfony2`.
+
 ## Features :
 
 - Apache 2 with rewrite mod and ready VHOST with "/var/www" moved to "/vagrant"
