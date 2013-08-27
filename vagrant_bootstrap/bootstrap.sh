@@ -39,7 +39,7 @@ apt-get install -y php5-cli php5-mysql php5-curl php5-mcrypt php5-gd php-pear ph
 # Remove "/var/www" created by apache
 rm -rf /var/www
 # Symlink "/vagrant" to "/var/www"
-ln -fs /vagrant/web /var/www
+ln -fs /vagrant /var/www
 # Setting the timezone
 sed 's#;date.timezone\([[:space:]]*\)=\([[:space:]]*\)*#date.timezone\1=\2\"'"$PHP_TIMEZONE"'\"#g' /etc/php5/apache2/php.ini > /etc/php5/apache2/php.ini.tmp
 mv /etc/php5/apache2/php.ini.tmp /etc/php5/apache2/php.ini
