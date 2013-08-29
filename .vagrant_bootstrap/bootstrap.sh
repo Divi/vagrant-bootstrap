@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 
+# ----------------------------------------
+# https://github.com/Divi/VagrantBootstrap
+# ----------------------------------------
+
 # Include parameteres file
 # ------------------------
-source /vagrant/vagrant_bootstrap/parameters.sh
+source /vagrant/.vagrant_bootstrap/parameters.sh
 
 # Update the box release repositories
 # -----------------------------------
@@ -11,6 +15,8 @@ apt-get update
 
 # APACHE
 # ------
+# Prevent from existing custom "000-default.conf"
+rm -rf /etc/apache2/sites-available/000-default.conf
 apt-get install -y apache2
 # Add ServerName to httpd.conf for localhost
 echo "ServerName localhost" > /etc/apache2/httpd.conf
@@ -66,30 +72,23 @@ apt-get install -y build-essential git-core vim curl
 
 # Configure MySQL database and user
 # ---------------------------------
+if [ "$DATABASE_NAME" != "" ];
+then
+  # Create database
+  echo "CREATE DATABASE IF NOT EXISTS ${DATABASE_NAME}" | mysql
+fi
 # Edit my.cnf to unbind localhost
-if [ "$DATABASE_HOST" != "localhost" ];
+if [ "$DATABASE_ROOT_HOST" != "localhost" ];
 then
   sed "s/bind-address\([[:space:]]*\)=\([[:space:]]*\)127.0.0.1/bind-address\1=\20.0.0.0/g" /etc/mysql/my.cnf > /etc/mysql/my.cnf.tmp
   mv /etc/mysql/my.cnf.tmp /etc/mysql/my.cnf
+  # Edit the root user
+  echo "use mysql; UPDATE user SET Host = '%' WHERE User = 'root' AND Host = '::1'" | mysql
   # Restart MySQL to reload edited configuration file
   service mysql restart
 fi
-# Create user & database
-echo "CREATE DATABASE IF NOT EXISTS ${DATABASE_NAME}" | mysql
-echo "CREATE USER '${DATABASE_USER}'@'${DATABASE_HOST}' IDENTIFIED BY '${DATABASE_PASSWORD}'" | mysql
-echo "GRANT ALL PRIVILEGES ON ${DATABASE_NAME}.* TO '${DATABASE_USER}'@'${DATABASE_HOST}' IDENTIFIED BY '${DATABASE_PASSWORD}'" | mysql
+
 
 # Apache VHOST
 # ------------
-VHOST=$(cat <<EOF
-<VirtualHost *:80>
-  DocumentRoot "/var/www"
-  ServerName localhost
-  
-  <Directory "/var/www">
-    AllowOverride None
-  </Directory>
-</VirtualHost>
-EOF
-)
-echo "${VHOST}" > /etc/apache2/sites-available/000-default.conf
+cp /etc/apache2/sites-available/000-default.conf.dist /etc/apache2/sites-available/000-default.conf
