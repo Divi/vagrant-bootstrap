@@ -2,7 +2,7 @@ VagrantBootstrap for Symfony2
 =============================
 
 A simple provisioning Vagrant bootstrap to be ready for PHP/MySQL development.
-This is a Symfony2 bootstrap for Mac/Linux users only !
+This is a Symfony2 bootstrap for Mac/Linux users only ! If you are a Windows user, please goto the branch "symfony2-windows".
 
 ## Step 1 :
 
