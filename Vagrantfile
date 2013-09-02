@@ -13,6 +13,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "precise32"
   config.vm.box_url = "http://files.vagrantup.com/precise32.box"
   config.ssh.forward_agent = true
+  config.vm.network :private_network, ip: "192.168.100.10"
 
   config.vm.provider :virtualbox do |v|
     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
@@ -27,10 +28,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Synced folders
   # --------------
   config.vm.synced_folder "./.apache2_vhosts", "/etc/apache2/sites-available"
-  config.vm.synced_folder "../", "/var/www", :nfs => true
   
-  # If you want to share your SSH key, uncomment this line (you must execute commands (like "git clone") in "sudo su", because the key will be in the root folder, otherwise put it in vagrant folder) :
-  # config.vm.synced_folder "~/.ssh", "/root/.ssh"
+  # Share your SSH key (you must execute commands (like "git clone") in "sudo su", because the key will be in the root folder, otherwise put it in vagrant folder)
+  config.vm.synced_folder "~/.ssh", "/root/.ssh"
 
   # Forwarding ports
   # ----------------
