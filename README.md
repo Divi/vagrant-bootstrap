@@ -106,6 +106,9 @@ Database parameters :
 PHP parameters :
 - `PHP_TIMEZONE` : the PHP timezone (default: "UTC"). Check possible values here : http://php.net/manual/en/timezones.php
 
+Application parameters :
+- `APPLICATION_NAME` : your application name, please see the "Step 2".
+
 ## Other stuff
 
 Feel free to fork me or create issue for requesting the creation of a new feature !
