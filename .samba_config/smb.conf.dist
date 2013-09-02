@@ -1,0 +1,31 @@
+[global]
+disable netbios = no
+dns proxy = no
+server string = %h
+workgroup = WORKGROUP
+announce version = 5.0
+socket options = TCP_NODELAY IPTOS_LOWDELAY SO_KEEPALIVE SO_RCVBUF=262144 SO_SNDBUF=262144
+strict syn = no
+sync always = no
+read size = 262144
+max xmit = 263144
+read raw = yes
+write raw = yes
+passdb backend = tdbsam
+security = user
+null passwords = true
+username map = /
+name resolve order = hosts wins bcast
+interfaces = eth0
+wins support = no
+syslog = 1
+syslog only = yes
+
+[shared]
+path =  /var/www
+browseable = yes
+read only = no
+guest ok = no
+create mask = 0777
+directory mask = 0777
+valid users = vagrant
