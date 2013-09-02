@@ -16,3 +16,7 @@ DATABASE_ROOT_HOST="localhost"
 # PHP
 # ---
 PHP_TIMEZONE="UTC"
+
+# APPLICATION
+# -----------
+APPLICATION_NAME="appname"
