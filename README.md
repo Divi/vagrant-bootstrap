@@ -2,9 +2,25 @@ VagrantBootstrap for Symfony2
 =============================
 
 A simple provisioning Vagrant bootstrap to be ready for PHP/MySQL development.
-This is a Symfony2 bootstrap with ~100ms with Symfony Standard. Tested with the version 2.3.3.
+This is a Symfony2 bootstrap for Mac/Linux users only !
 
 ## Step 1 :
+
+Your application must be in the previous folder of `/vagrant`.
+Example :
+```
+/.vagrant
+ - /.apache2_vhosts
+ - /.vagrant
+ - /.vagrant_bootstrap
+ - /Vagrantfile
+/app
+/src
+/web
+/composer.json
+```
+
+## Step 2 :
 
 Please, edit your AppKernel.php, replace "appname" with your application name (it must be the same of the `APPLICATION_NAME` parameter in the file "parameters.sh" !). For more information about this fix, please read : http://www.whitewashing.de/2013/08/19/speedup_symfony2_on_vagrant_boxes.html
 ```php
@@ -34,14 +50,7 @@ class AppKernel extends Kernel
 }
 ```
 
-## Step 2 :
-
-Your application must be in the `/vagrant` shared folder.
-
 That's all !
-
-
-If you have using Symfony2, please see the branch named `symfony2`.
 
 ## Features :
 
