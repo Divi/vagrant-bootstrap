@@ -16,7 +16,7 @@ rm -rf /var/www
 mkdir /var/www
 
 # Fetching project
-git clone $PROJECT_GIT_REPOSITORY /var/www/$APPLICATION_NAME
+git clone $PROJECT_GIT_REPOSITORY /var/www/project
 if [ "$PROJECT_GIT_BRANCH" != "" ];
 then
   # Checkout new branch

@@ -1,9 +1,9 @@
 <VirtualHost *:80>
-	DocumentRoot "/var/www/web"
+	DocumentRoot "/var/www/project/web"
 	DirectoryIndex app_dev.php
 	ServerName localhost
 	
-	<Directory "/var/www/web">
+	<Directory "/var/www/project/web">
 		AllowOverride None
 		Allow from All
 		<IfModule mod_rewrite.c>
@@ -22,5 +22,5 @@
 		</IfModule>
 	</Directory>
 	
-	ErrorLog "/var/www/app/logs/apache_app_errors.log"
+	ErrorLog "/var/www/project/app/logs/apache_app_errors.log"
 </VirtualHost>
