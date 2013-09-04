@@ -1,5 +1,5 @@
-VagrantBootstrap for Symfony2
-=============================
+Vagrant for Symfony2
+====================
 
 A simple provisioning Vagrant bootstrap to be ready for PHP/MySQL development.
 This is a Symfony2 bootstrap for Windows users only !
