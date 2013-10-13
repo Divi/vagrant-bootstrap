@@ -12,6 +12,15 @@ Vagrant on Windows with Symfony 2 is very slow. However, Samba can solve this is
 
 Add to your `web/app_dev.php` (line ~14) & `web/config.php` (line ~9) the IP exclusion `10.0.2.2` because your host is not the localhost.
 
+## Step 2 :
+
+You must to mount the driver, simply go to the computer folder, and "Connect a network driver" with this address : `\\192.168.100.10\shared`.
+Do not forget to unmount the driver on halt (right click and unmount).
+
+If you want to make an automatic script bash :
+- Mount : `net use \\192.168.100.10\shared vagrantpassword /USER:vagrantuser && pushd \\192.168.100.10\shared` (replace "vagrantuser" by your Samba user and "vagrantpass" by your Samba password)
+- Unmount : `popd`
+
 ## Step 3 :
 
 Only if you have performance issue, please edit your AppKernel.php, replace "appname" with your application name (it must be the same of the `APPLICATION_NAME` parameter in the file "parameters.sh" !). For more information about this fix, please read : http://www.whitewashing.de/2013/08/19/speedup_symfony2_on_vagrant_boxes.html
@@ -41,15 +50,6 @@ class AppKernel extends Kernel
     }
 }
 ```
-
-## Step 2 :
-
-You must to mount the driver, simply go to the computer folder, and "Connect a network driver" with this address : `\\192.168.100.10\shared`.
-Do not forget to unmount the driver on halt (right click and unmount).
-
-If you want to make an automatic script bash :
-- Mount : `net use \\192.168.100.10\shared vagrantpassword /USER:vagrantuser && pushd \\192.168.100.10\shared` (replace "vagrantuser" by your Samba user and "vagrantpass" by your Samba password)
-- Unmount : `popd`
 
 That's all !
 

@@ -17,6 +17,7 @@ mkdir /var/www
 
 # Fetching project
 git clone $PROJECT_GIT_REPOSITORY /var/www/project
+cd /var/www/project
 if [ "$PROJECT_GIT_BRANCH" != "" ];
 then
   # Checkout new branch
@@ -24,7 +25,6 @@ then
 fi
 
 # Composer stuff
-cd /var/www
 curl -sS https://getcomposer.org/installer | php
 php composer.phar install
 
