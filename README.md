@@ -22,7 +22,11 @@ Example :
 
 ## Step 2 :
 
-Please, edit your AppKernel.php, replace "appname" with your application name (it must be the same of the `APPLICATION_NAME` parameter in the file "parameters.sh" !). For more information about this fix, please read : http://www.whitewashing.de/2013/08/19/speedup_symfony2_on_vagrant_boxes.html
+Add to your `web/app_dev.php` (line ~14) & `web/config.php` (line ~9) the IP exclusion `10.0.2.2` because your host is not the localhost.
+
+## Step 3 :
+
+Only if you have performance issue, please edit your AppKernel.php, replace "appname" with your application name (it must be the same of the `APPLICATION_NAME` parameter in the file "parameters.sh" !). For more information about this fix, please read : http://www.whitewashing.de/2013/08/19/speedup_symfony2_on_vagrant_boxes.html
 ```php
 <?php
 
@@ -56,7 +60,7 @@ That's all !
 
 - Apache 2 with rewrite mod and ready VHOST
 - PHP 5.x (last stable release, now 5.5.x. You can choose older stable version in bootstrap.sh, see PHP part)
-- Preconfigured php.ini : show errors & set timezone
+- Preconfigured php.ini : show errors & set timezone & ready to use for Symfony 2
 - PHP packages : php5-cli php5-mysql php5-curl php5-mcrypt php5-gd php-pear php5-xdebug php5-intl
 - MariaDB (MySQL) with custom database and root remote access (no password)
 - Some essential packages : build-essential git-core vim curl
