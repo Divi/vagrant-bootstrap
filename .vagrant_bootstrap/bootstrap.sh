@@ -58,6 +58,7 @@ mv /etc/php5/apache2/php.ini.tmp /etc/php5/apache2/php.ini
 
 # MySQL (MariaDB)
 # See: http://doc.ubuntu-fr.org/mariadb
+# If installation issue like "mariadb-server: Depends: mariadb-server-5 [...]", see: http://askubuntu.com/questions/365992/ubuntu-13-10-installing-mariadb-when-apt-reports-mariadb-has-unmet-dependencies
 # -------------------------------------
 # Install new repository
 apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 1BB943DB
