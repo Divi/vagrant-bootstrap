@@ -19,7 +19,7 @@ Do not forget to unmount the driver on halt (right click and unmount).
 
 If you want to make an automatic script bash :
 - Mount : `net use \\192.168.100.10\shared vagrantpassword /USER:vagrantuser && pushd \\192.168.100.10\shared` (replace "vagrantuser" by your Samba user and "vagrantpass" by your Samba password)
-- Unmount : `popd`
+- Unmount : `net use Z: /delete` (the `Z` letter might be different for you)
 
 ## Step 3 :
 
