@@ -123,3 +123,7 @@ Project parameters :
 ## Other stuff
 
 Feel free to fork me or create issue for requesting the creation of a new feature !
+
+## Bonus
+
+How to install RabbitMQ ready to use for Symfony 2 ? : https://gist.github.com/Divi/7469991
