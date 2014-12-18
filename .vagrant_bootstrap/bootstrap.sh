@@ -32,9 +32,9 @@ service apache2 restart
 apt-get install -y libapache2-mod-php5
 # Install "add-apt-repository" binaries
 apt-get install -y python-software-properties
-# Install PHP 5.x
+# Install PHP 5.6.x
 # Use "ppa:ondrej/php5-oldstable" for old and stable release
-add-apt-repository ppa:ondrej/php5
+add-apt-repository ppa:ondrej/php5-5.6
 # Update repositories
 apt-get update
 
